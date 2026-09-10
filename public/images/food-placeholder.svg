@@ -1,0 +1,37 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e2985a"/>
+      <stop offset="100%" stop-color="#c2622b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#bg)"/>
+
+  <!-- steam -->
+  <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M170 70 C 160 85, 180 95, 170 110"/>
+    <path d="M200 60 C 190 78, 210 88, 200 106"/>
+    <path d="M230 70 C 220 85, 240 95, 230 110"/>
+  </g>
+
+  <!-- plate -->
+  <ellipse cx="200" cy="205" rx="95" ry="26" fill="#ffffff" fill-opacity="0.12"/>
+  <circle cx="200" cy="190" r="72" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="5"/>
+  <circle cx="200" cy="190" r="50" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3"/>
+
+  <!-- fork -->
+  <g stroke="#ffffff" stroke-opacity="0.3" stroke-width="5" stroke-linecap="round">
+    <line x1="88" y1="140" x2="88" y2="240"/>
+    <line x1="76" y1="140" x2="76" y2="170"/>
+    <line x1="100" y1="140" x2="100" y2="170"/>
+    <path d="M76 170 Q 88 182, 100 170" fill="none"/>
+  </g>
+
+  <!-- knife -->
+  <g stroke="#ffffff" stroke-opacity="0.3" stroke-width="5" stroke-linecap="round">
+    <line x1="312" y1="150" x2="312" y2="240"/>
+    <path d="M312 150 C 300 155, 300 175, 312 182" fill="none"/>
+  </g>
+</svg>
+
