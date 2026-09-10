@@ -6,7 +6,7 @@
   name: "recipe";
 
   default: true;
-  prefersdark: false;
+  prefersdark: true;
   color-scheme: light;
   --color-base-100: oklch(98% 0.015 80);
   --color-base-200: oklch(95% 0.025 75);
