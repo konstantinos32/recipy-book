@@ -1,10 +1,10 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: recipe --default;
-}
+
+@plugin "daisyui";
 
 @plugin "daisyui/theme" {
   name: "recipe";
+
   default: true;
   prefersdark: false;
   color-scheme: light;
