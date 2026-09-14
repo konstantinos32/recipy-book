@@ -13,7 +13,7 @@ export const recipeSchema = z.object({
     .int("Servings must be a whole number")
     .positive("Servings must be greater than 0"),
   category: z.string().min(1, "Category is required"),
-  image: z.string().url().optional(),
+  image: z.string().url().or(z.literal("")).optional(),
 
 });
 
