@@ -32,7 +32,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
                   <p className="text-base-content/70">{recipe.description}</p>
                   <div className="card-actions items-center justify-between mt-4">
                     <span className="text-sm text-base-content/60">
-                      ⏱ {recipe.duration}
+                      ⏱ {recipe.duration} min · 🍽 {recipe.servings}
                     </span>
                     <Link href={`/recipes/${recipe.id}`} className="btn btn-sm btn-outline btn-primary">
                       View Recipe

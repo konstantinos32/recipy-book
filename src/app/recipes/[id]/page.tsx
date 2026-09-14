@@ -58,8 +58,9 @@ export default function RecipeDetailsPage(){
                     <h2 className="text-lg font-semibold text-base-content">Ingredients</h2>
                     <p className="text-base-content/80">{recipe.ingredients}</p>
 
-                    <div className="mt-6 flex items-center gap-2 text-sm text-base-content/60">
-                        <span>⏱ {recipe.duration}</span>
+                    <div className="mt-6 flex items-center gap-4 text-sm text-base-content/60">
+                        <span>⏱ {recipe.duration} min</span>
+                        <span>🍽 {recipe.servings} servings</span>
                     </div>
 
                     <div className="card-actions mt-6 justify-between">

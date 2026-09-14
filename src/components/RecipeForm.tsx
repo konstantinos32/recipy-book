@@ -49,7 +49,7 @@ export default function RecipeForm({
             </label>
 
             <label className="flex flex-col gap-1">
-              <span className="text-sm font-medium">Description <span className="text-sm text-base-content/60">(optional)</span></span>
+              <span className="text-sm font-medium">Description</span>
               <textarea
                 className="textarea textarea-bordered w-full resize-none"
                 placeholder="A short description of the recipe"
@@ -77,13 +77,14 @@ export default function RecipeForm({
             <div className="grid grid-cols-2 gap-4">
               <label className="flex flex-col gap-1">
                 <span className="text-sm font-medium">
-                  Duration 
+                  Duration (min)
                 </span>
                 <input
-                  type="text"
+                  type="number"
+                  min={1}
                   className="input input-bordered w-full"
-                  placeholder="e.g. 30 min"
-                  {...register("duration")}
+                  placeholder="e.g. 30"
+                  {...register("duration", { valueAsNumber: true })}
                 />
                 {errors.duration && (
                   <span className="text-sm text-error">{errors.duration.message}</span>
@@ -92,19 +93,35 @@ export default function RecipeForm({
 
               <label className="flex flex-col gap-1">
                 <span className="text-sm font-medium">
-                  Category
+                  Servings
                 </span>
                 <input
-                  type="text"
+                  type="number"
+                  min={1}
                   className="input input-bordered w-full"
-                  placeholder="e.g. Dinner"
-                  {...register("category")}
+                  placeholder="e.g. 4"
+                  {...register("servings", { valueAsNumber: true })}
                 />
-                {errors.category && (
-                  <span className="text-sm text-error">{errors.category.message}</span>
+                {errors.servings && (
+                  <span className="text-sm text-error">{errors.servings.message}</span>
                 )}
               </label>
             </div>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-sm font-medium">
+                Category
+              </span>
+              <input
+                type="text"
+                className="input input-bordered w-full"
+                placeholder="e.g. Dinner"
+                {...register("category")}
+              />
+              {errors.category && (
+                <span className="text-sm text-error">{errors.category.message}</span>
+              )}
+            </label>
 
             <label className="flex flex-col gap-1">
               <span className="text-sm font-medium">Image URL <span className="text-sm text-base-content/60">(optional)</span></span>
