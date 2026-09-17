@@ -1,4 +1,5 @@
 import sql from "@/lib/db";
+import { recipeSchema } from "@/lib/validations/recipe";
 
 export async function GET() {
   try {
@@ -23,9 +24,21 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    console.log("Received recipe:", body);
+    const result = recipeSchema.safeParse(body);
 
-    return Response.json(body, { status: 201 });
+    if (!result.success) {
+      return Response.json(
+        {
+          error: "Invalid recipe data",
+          details: result.error.flatten(),
+        },
+        { status: 400 }
+      );
+    }
+
+    console.log("Validated recipe:", result.data);
+
+    return Response.json(result.data, { status: 201 });
   } catch (error) {
     console.error("Failed to create recipe:", error);
 
