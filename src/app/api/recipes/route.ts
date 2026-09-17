@@ -36,9 +36,44 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("Validated recipe:", result.data);
+    const {
+      title,
+      description,
+      ingredients,
+      duration,
+      servings,
+      category,
+      image,
+    } = result.data;
 
-    return Response.json(result.data, { status: 201 });
+    const ingredientsArray = ingredients
+      .split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter(Boolean);
+
+    const [recipe] = await sql`
+      INSERT INTO recipes (
+        title,
+        category,
+        duration,
+        servings,
+        ingredients,
+        description,
+        image
+      )
+      VALUES (
+        ${title},
+        ${category},
+        ${duration},
+        ${servings},
+        ${ingredientsArray},
+        ${description},
+        ${image || null}
+      )
+      RETURNING *
+    `;
+
+    return Response.json(recipe, { status: 201 });
   } catch (error) {
     console.error("Failed to create recipe:", error);
 
