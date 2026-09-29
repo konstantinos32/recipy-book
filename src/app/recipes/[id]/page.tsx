@@ -1,3 +1,4 @@
+import FavoriteButton from "@/components/FavoriteButton";
 import RecipeNotes from "@/components/RecipeNotes";
 import Link from "next/link";
 import Image from "next/image";
@@ -100,7 +101,11 @@ export default async function RecipeDetailsPage({
               Edit
             </Link>
 
-            <DeleteRecipe id={String(recipe.id)} />
+            <div className="flex items-center gap-2">
+              <FavoriteButton recipeId={String(recipe.id)} />
+
+              <DeleteRecipe id={String(recipe.id)} />
+            </div>
           </div>
 
           <RecipeNotes recipeId={String(recipe.id)} />
