@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -8,6 +9,9 @@ export function Header() {
     const pathname = usePathname();
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    // Check the current login session
+    const session = authClient.useSession();
 
     const isCreatePage = pathname.startsWith("/recipes/create");
 
@@ -31,11 +35,12 @@ export function Header() {
 
     async function handleLogout() {
         await authClient.signOut();
+        router.refresh();
         router.push("/login");
     }
 
     return (
-        <div className="navbar sticky top-0 z-20 gap-4 bg-base-200/95 backdrop-blur shadow-sm px-6">
+        <div className="navbar sticky top-0 z-20 gap-4 bg-base-200/95 px-6 shadow-sm backdrop-blur">
 
             <Link
                 href="/"
@@ -45,7 +50,7 @@ export function Header() {
             </Link>
 
             {!isCreatePage && (
-                <label className="input input-bordered input-sm mx-auto flex w-full max-w-md flex-1 items-center gap-2">
+                <label className="input input-bordered mx-auto flex w-full max-w-md flex-1 items-center gap-2 input-sm">
 
                     <svg
                         className="h-4 w-4 opacity-50"
@@ -78,22 +83,33 @@ export function Header() {
                 </label>
             )}
 
-            {!isCreatePage && (
+            {!isCreatePage && !session.isPending && (
                 <>
-                    <Link
-                        href="/recipes/create"
-                        className="btn btn-primary btn-sm shrink-0"
-                    >
-                        Add Recipe
-                    </Link>
+                    {session.data ? (
+                        <>
+                            <Link
+                                href="/recipes/create"
+                                className="btn btn-primary btn-sm shrink-0"
+                            >
+                                Add Recipe
+                            </Link>
 
-                    <button
-                        type="button"
-                        onClick={handleLogout}
-                        className="btn btn-ghost btn-sm shrink-0"
-                    >
-                        Logout
-                    </button>
+                            <button
+                                type="button"
+                                onClick={handleLogout}
+                                className="btn btn-ghost btn-sm shrink-0"
+                            >
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <Link
+                            href="/login"
+                            className="btn btn-primary btn-sm shrink-0"
+                        >
+                            Login
+                        </Link>
+                    )}
                 </>
             )}
         </div>
